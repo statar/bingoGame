@@ -1,0 +1,193 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.informationContainer {
+    flex-direction: column;
+    row-gap: 20px;
+    height: 200px;
+    width: 100%;
+}
+
+.informationContainer div {
+    height: 40px;
+}
+
+.informationContainer .text {
+    font-size: 30px;
+}
+
+.informationContainer .text.success {
+    color: var(--color-blue)
+}
+
+.informationContainer .text.fail {
+    color: var(--color-red)
+}
+
+.gameContainer {
+    height: calc(100% - 200px);
+    width: 100%;
+}
+
+.boardContainer {
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+}
+
+.board {
+    margin: 20px;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background);
+    position: relative;
+}
+
+.board .boardFinishedRound,
+.board .boardIndex {
+    position: absolute;
+    width: auto;
+    top: -15px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.board .boardIndex {
+    left: -15px;
+    background-color: var(--color-blue-light);
+    color: var(--color-grey-light);
+}
+
+.board .boardFinishedRound {
+    right: -15px;
+    background-color: var(--color-blue);
+    color: var(--color-white);
+
+}
+
+.board.success {
+    border-color: var(--color-blue);
+    background-color: var(--color-blue-light);
+}
+
+.boardValue {
+    padding: 10px;
+    height: 20px;
+    width: 20px;
+
+
+    display: inline-flex;
+}
+
+.boardValue.found {
+    text-align: center;
+    background-color: var(--color-border);
+    border-radius: 50%;
+}
+
+.numberList {
+    padding: 20px;
+    flex-wrap: wrap;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-background);
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+.numberList .searchNumber {
+    text-align: center;
+    padding: 8px;
+    margin: 2px;
+    width: 15px;
+    height: 15px;
+    color: var(--color-grey-light);
+}
+
+.numberList .searched {
+    background-color: var(--color-border);
+}
+
+.genericButton {
+    height: 35px;
+    width: 200px;
+    padding: 4px 20px;
+    border-radius: 3px;
+    border: 1px solid var(--color-button-border);
+    background-color: var(--color-blue);
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    margin: 0 20px;
+}
+
+.genericButton:disabled {
+    background-color: var(--color-border);
+    border-color: var(--color-border);
+    color: var(--color-grey-light);
+    cursor: auto;
+}
+
+.genericButton .icon {
+    background: var(--color-white);
+    margin-right: 8px;
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+    background-size: 12px 12px;
+    mask-size: 12px 12px;
+    -webkit-mask-size: 12px 12px;
+}
+
+.genericButton span {
+    color: var(--color-white);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.noDisplay {
+    display: none;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playIcon {
+    -webkit-mask-image: url(src/assets/icons/playIcon.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    mask-image: url(src/assets/icons/playIcon.svg);
+    mask-repeat: no-repeat;
+}
+
+.restartIcon {
+    -webkit-mask-image: url(src/assets/icons/refresh.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    mask-image: url(src/assets/icons/refresh.svg);
+    mask-repeat: no-repeat;
+}
+
+span.found:before {
+    content: "\200b"; /*unicode zero width space character*/
+}
+
+@media (hover: hover) {
+
+    .genericButton:not(:disabled):hover {
+        border-color: var(--color-grey-dark);
+    }
+}

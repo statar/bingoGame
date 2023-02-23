@@ -1,0 +1,82 @@
+<div *ngIf="gameNotAvailable" class="container flex">
+    GAME IS NOT AVAILABLE!
+</div>
+
+<div *ngIf="!gameNotAvailable" class="container flex">
+
+    <div class="informationContainer flex">
+        <div class="text round" [class.hidden]="round < 0"> ROUND {{round + 1}} </div>
+
+        <div [class.hidden]="!gameFinish">
+            <div class="text success"
+                 [class.noDisplay]="winnerIndex < 0">
+                {{solveFastClicked ? 'LAST' : 'FIRST'}} FINISHED ONE IS {{winnerIndex + 1}}. BOARD WITH {{winnerScore}} SCORE!
+            </div>
+        </div>
+
+        <div class="flex">
+            <button (click)="startNextRound()"
+                    [disabled]="gameFinish"
+                    class="genericButton flex">
+                <span class="icon playIcon"></span>
+                <span>{{ buttonLabel }}</span>
+            </button>
+
+            <button (click)="findFirst()"
+                    [disabled]="gameFinish"
+                    class="genericButton flex">
+                <span class="icon playIcon"></span>
+                <span> Find winner </span>
+            </button>
+
+            <button (click)="findLast()"
+                    [disabled]="gameFinish || gameOngoing"
+                    class="genericButton flex">
+                <span class="icon playIcon"></span>
+                <span> Find loser </span>
+            </button>
+
+            <button (click)="resetGame()"
+                    class="genericButton flex">
+                <span class="icon restartIcon"></span>
+                <span> Restart game </span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="gameContainer">
+        <div class="numberList flex">
+            <span *ngFor="let searchNumber of searchNumberList; let index = index"
+                  class="searchNumber"
+                  [class.searched]="index <= round">
+                {{ searchNumber }}
+            </span>
+        </div>
+
+        <div class="boardContainer flex">
+            <div *ngFor="let board of boardsList; let index = index"
+                 class="board"
+                 [class.success]="winnerIndex === index">
+                <span class="boardIndex">{{index + 1}}</span>
+                <span *ngIf="getFinishedRoundOfBoard(board.finishedSearchNumber) >= 0" class="boardFinishedRound">Finished round: {{getFinishedRoundOfBoard(board.finishedSearchNumber) + 1}}</span>
+
+                <ng-container *ngFor="let value of board.boardValues; let index = index">
+                    <span class="boardValue"
+                          [class.found]="value===-1">
+                        {{ value === -1 ? '' : value }}
+                    </span>
+                    <br *ngIf="(index + 1) % 5 === 0">
+                </ng-container>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--<router-outlet></router-outlet>-->
